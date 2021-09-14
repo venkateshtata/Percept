@@ -1,0 +1,9 @@
+AFTER TRAINING : (From the root directory of yolov5)
+ - python3 export.py --weights best.pt --img 640 --batch 1 --opset 12
+
+TO ARCHIVE THE MODEL : (from Inference directory)
+ -  torch-model-archiver --model-name yolov5m --version 1.0 --serialized-file assets/yolov5m.torchscript.pt --extra-files index_to_name.json,objectDetectionHandler.py,utils.py,config.py --handler endpointHandler.py --export-path model_store 
+
+
+TO SERVE : 
+-  torchserve --start --model-store model_store --models yolov5m=yolov5m.mar --ts-config /home/venkatesh/Desktop/yolov5/mystery-box-challenge-app/inference-endpoint/configs/config.properties
